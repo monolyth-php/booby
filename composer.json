@@ -1,8 +1,8 @@
 {
-    "name": "monomelodies/booby",
-    "description": "Generic flash message storage system",
+    "name": "monolyth/booby",
+    "description": "Flash message storage system for Monolyth unframework",
     "license": "MIT",
-    "keywords": ["php","flash","message","storage"],
+    "keywords": ["monolyth","php","flash","message","storage"],
     "authors": [
         {
             "name": "Marijn Ophorst",
@@ -13,11 +13,11 @@
         "php": ">=5.5"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.0.*"
+        "gentry/gentry": "^0.9.0"
     },
     "autoload": {
         "psr-4": {
-            "Booby\\": "src"
+            "Monolyth\\Booby\\": "src"
         }
     }
 }    
