@@ -1,6 +1,6 @@
 <?php
 
-namespace Booby;
+namespace Monolyth\Booby;
 
 class Flash
 {
