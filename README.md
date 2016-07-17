@@ -10,12 +10,12 @@ loads, after redirect, on the desktop when generated in an Ajax request etc.).
 
 ### Composer (recommended)
 ```bash
-$ composer require monomelodies/booby
+$ composer require monolyth/booby
 ```
 
 ### Manual
 1. Clone or download the repository;
-2. Add `/path/to/booby/src` for namespace `Booby` in your autoloader.
+2. Add `/path/to/booby/src` for namespace `Monolyth\Booby` in your autoloader.
 
 ## Usage
 Adding a message is simple:
@@ -23,7 +23,7 @@ Adding a message is simple:
 ```php
 <?php
 
-Booby\Flash::me('This is my awesome message.');
+Monolyth\Booby\Flash::me('This is my awesome message.');
 ```
 
 ...as is later displaying it:
@@ -31,7 +31,7 @@ Booby\Flash::me('This is my awesome message.');
 ```php
 <?php
 
-foreach (Booby\Flash::each() as $msg) {
+foreach (Monolyth\Booby\Flash::each() as $msg) {
     echo $msg;
 }
 ```
@@ -43,9 +43,9 @@ key/value pairs available as options on your message. E.g.:
 ```php
 <?php
 
-Booby\Flash::me('This is a warning', ['type' => 'warning']);
+Monolyth\Booby\Flash::me('This is a warning', ['type' => 'warning']);
 
-$msg = Booby\Flash::each();
+$msg = Monolyth\Booby\Flash::each();
 echo $msg->type; // "warning"
 ```
 
