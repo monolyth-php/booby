@@ -2,6 +2,8 @@
 
 namespace Monolyth\Booby;
 
+use Generator;
+
 class Flash
 {
     private $msg;
