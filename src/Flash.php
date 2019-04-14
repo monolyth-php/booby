@@ -10,14 +10,23 @@ class Flash
 
     private static $store = [];
 
-    public function __construct($msg, array $options = [])
+    /**
+     * @param string $msg
+     * @param array $options
+     * @return void
+     */
+    public function __construct(string $msg, array $options = [])
     {
         $this->msg = $msg;
         $this->options = $options;
         $this->index = spl_object_hash($this);
     }
 
-    public function __get($name)
+    /**
+     * @param string $name
+     * @return mixed The value of the option, or null if not found.
+     */
+    public function __get(string $name)
     {
         if (isset($this->options[$name])) {
             return $this->options[$name];
@@ -25,19 +34,31 @@ class Flash
         return null;
     }
 
-    public function __isset($name)
+    /**
+     * @param string $name
+     * @return bool
+     */
+    public function __isset(string $name) : bool
     {
         return isset($this->options[$name]);
     }
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString() : string
     {
         $msg = $this->msg;
         unset(self::$store[$this->index]);
         return $msg;
     }
 
-    public static function me($msg, array $options = [])
+    /**
+     * @param string $msg
+     * @param array $options
+     * @return Monolyth\Booby\Flash
+     */
+    public static function me(string $msg, array $options = []) : Flash
     {
         self::init();
         $msg = new static($msg, $options);
@@ -45,7 +66,12 @@ class Flash
         return $msg;
     }
 
-    public static function each()
+    /**
+     * Get messages one by one.
+     *
+     * @return Generator
+     */
+    public static function each() : Generator
     {
         self::init();
         foreach (self::$store as $msg) {
@@ -53,13 +79,36 @@ class Flash
         }
     }
 
-    public static function all()
+    /**
+     * Get all current messages.
+     *
+     * @return array
+     */
+    public static function all() : array
     {
         self::init();
         return self::$store;
     }
 
-    private static function init()
+    /**
+     * Flush all messages (i.e., discard regardless of whether they were
+     * shown to the user).
+     *
+     * @return void
+     */
+    public static function flush() : void
+    {
+        self::init();
+        self::$store = [];
+        $_SESSION['Booby'] = [];
+    }
+
+    /**
+     * Helper to check if we were initialized.
+     *
+     * @return void
+     */
+    private static function init() : void
     {
         static $inited = false;
         if (!$inited) {
